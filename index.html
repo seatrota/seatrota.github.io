@@ -1,0 +1,448 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>SeatRota</title>
+  <script>
+    (function () {
+      try {
+        var stored = localStorage.getItem("seatrota-theme");
+        var theme = stored === "dark" || stored === "light"
+          ? stored
+          : (window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light");
+        document.documentElement.setAttribute("data-theme", theme);
+      } catch (e) {}
+    })();
+  </script>
+  <meta name="description" content="Team scheduling for Cal.diy. Round-robin and collective team booking, on top of the Cal.diy you already run. Self-host is free. A hosted plan is on the way.">
+  <link rel="canonical" href="https://seatrota.github.io/">
+  <meta property="og:title" content="SeatRota">
+  <meta property="og:description" content="Team scheduling for Cal.diy. Round-robin and collective team booking, on top of the Cal.diy you already run. Self-host is free. A hosted plan is on the way.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://seatrota.github.io/">
+  <meta property="og:image" content="https://seatrota.github.io/og.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="SeatRota. Team scheduling for Cal.diy.">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="SeatRota">
+  <meta name="twitter:description" content="Team scheduling for Cal.diy. Round-robin and collective team booking, on top of the Cal.diy you already run. Self-host is free. A hosted plan is on the way.">
+  <meta name="twitter:image" content="https://seatrota.github.io/og.png">
+  <meta name="theme-color" content="#F4F1EA" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#121410" media="(prefers-color-scheme: dark)">
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <link rel="preload" href="fonts/geist-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <a class="skip" href="#content">Skip to content</a>
+  <header class="site-header" id="top">
+    <div class="wrap header-inner">
+      <a class="logo" href="#top" aria-label="SeatRota">
+        <svg class="mark" viewBox="0 0 32 32" aria-hidden="true">
+          <circle cx="16" cy="16" r="11.2" fill="none" stroke="currentColor" stroke-width="1.5" opacity="0.45"></circle>
+          <circle cx="27.1" cy="16" r="2.15" fill="none" stroke="currentColor" stroke-width="1.5"></circle>
+          <circle cx="16" cy="27.1" r="2.15" fill="none" stroke="currentColor" stroke-width="1.5"></circle>
+          <circle cx="4.9" cy="16" r="2.15" fill="none" stroke="currentColor" stroke-width="1.5"></circle>
+          <circle cx="16" cy="4.9" r="2.7" fill="var(--accent)"></circle>
+        </svg>
+        <svg class="word" viewBox="-1 -3 96 32" aria-hidden="true">
+          <text x="0" y="20" fill="currentColor">SeatRota</text>
+        </svg>
+      </a>
+      <nav class="desktop-nav" aria-label="Primary">
+        <a href="#compare">Compare</a>
+        <a href="#features">Features</a>
+        <a href="#pricing">Pricing</a>
+        <a href="#faq">FAQ</a>
+      </nav>
+      <div class="header-actions">
+        <button type="button" class="icon-btn" id="theme-toggle" aria-pressed="false" aria-label="Switch to dark mode">
+          <svg class="icon-moon" viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M16.5 13.5A6.5 6.5 0 0 1 10 4.2 7 7 0 1 0 19.8 14a6.4 6.4 0 0 1-3.3-.5Z" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"></path>
+          </svg>
+          <svg class="icon-sun" viewBox="0 0 24 24" aria-hidden="true">
+            <circle cx="12" cy="12" r="3.2" fill="none" stroke="currentColor" stroke-width="1.6"></circle>
+            <path d="M12 3.5v2.2M12 18.3v2.2M3.5 12h2.2M18.3 12h2.2M6 6l1.6 1.6M16.4 16.4 18 18M18 6l-1.6 1.6M7.6 16.4 6 18" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"></path>
+          </svg>
+        </button>
+        <a class="btn header-cta" href="#waitlist" aria-label="Join the waitlist">
+          <span class="full">Join the waitlist</span>
+          <span class="short">Waitlist</span>
+        </a>
+        <details class="menu" id="menu">
+          <summary aria-label="Sections">
+            <svg class="icon-open" viewBox="0 0 24 24" aria-hidden="true">
+              <path d="M5 8h14M5 12h14M5 16h14" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"></path>
+            </svg>
+            <svg class="icon-close" viewBox="0 0 24 24" aria-hidden="true">
+              <path d="M7 7l10 10M17 7 7 17" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"></path>
+            </svg>
+          </summary>
+          <nav aria-label="Sections">
+            <a href="#compare">Compare</a>
+            <a href="#features">Features</a>
+            <a href="#pricing">Pricing</a>
+            <a href="#faq">FAQ</a>
+            <a href="#waitlist">Join the waitlist</a>
+          </nav>
+        </details>
+      </div>
+    </div>
+  </header>
+
+  <main id="content">
+    <section class="hero">
+      <div class="wrap hero-grid">
+        <svg class="halo" viewBox="0 0 200 200" aria-hidden="true">
+          <circle cx="100" cy="100" r="78" fill="none" stroke="currentColor" stroke-width="1"></circle>
+          <circle cx="100" cy="22" r="8" fill="currentColor"></circle>
+          <circle cx="178" cy="100" r="6" fill="none" stroke="currentColor" stroke-width="2.4"></circle>
+          <circle cx="100" cy="178" r="6" fill="none" stroke="currentColor" stroke-width="2.4"></circle>
+          <circle cx="22" cy="100" r="6" fill="none" stroke="currentColor" stroke-width="2.4"></circle>
+        </svg>
+        <div class="hero-copy">
+          <h1>
+            <span class="brand-line">SeatRota</span>
+            <span class="display">Team scheduling<br>for Cal.diy.</span>
+          </h1>
+          <p class="lede">Round-robin and collective team booking, on top of the Cal.diy you already run. Self-host is free. A hosted plan is on the way.</p>
+          <p class="works">Works with Cal.diy.</p>
+          <div class="cta-row">
+            <a class="btn" href="#waitlist">Join the waitlist</a>
+          </div>
+          <p class="hero-note">Leave your email and we'll tell you when the self-host image and the hosted beta are ready. No newsletter.</p>
+        </div>
+
+        <figure class="stage">
+          <div class="mock-frame">
+          <div class="backplate" aria-hidden="true"></div>
+          <div class="mock" aria-hidden="true">
+            <div class="modes">
+              <span class="mode is-on">Round-robin</span>
+              <span class="mode">Collective</span>
+            </div>
+            <div class="mock-top">
+              <div>
+                <p class="mock-team">Platform team</p>
+                <p class="mock-title">Team booking</p>
+              </div>
+              <span class="duration">30 min</span>
+            </div>
+            <div class="rota">
+              <p class="mock-kicker">Host rotation</p>
+              <ol class="seats">
+                <li>
+                  <span class="av av-1">1</span>
+                  <span class="who">Seat 1</span>
+                  <span class="tag tag-fixed">Fixed</span>
+                </li>
+                <li>
+                  <span class="av av-2">2</span>
+                  <span class="who">Seat 2</span>
+                  <span class="tag"></span>
+                </li>
+                <li class="turn">
+                  <span class="av av-3">3</span>
+                  <span class="who">Seat 3</span>
+                  <span class="tag tag-turn">This turn</span>
+                </li>
+                <li>
+                  <span class="av av-4">4</span>
+                  <span class="who">Seat 4</span>
+                  <span class="tag"></span>
+                </li>
+              </ol>
+              <div class="splits">
+                <span>2</span>
+                <span>2</span>
+                <span class="hot">3</span>
+                <span>2</span>
+              </div>
+              <p class="split-label">How the rota is splitting</p>
+            </div>
+            <div class="slots">
+              <p class="mock-kicker">Tuesday · open times</p>
+              <div class="slot-grid">
+                <span class="slot">9:00</span>
+                <span class="slot">9:30</span>
+                <span class="slot is-taken"><s>10:00</s><em>Taken</em></span>
+                <span class="slot is-picked">10:30<em>Selected</em></span>
+                <span class="slot">11:00</span>
+                <span class="slot">11:30</span>
+              </div>
+            </div>
+            <div class="assign">
+              <span class="chip">
+                <svg viewBox="0 0 16 16" aria-hidden="true">
+                  <circle cx="8" cy="8" r="6.2" fill="none" stroke="currentColor" stroke-width="1.4"></circle>
+                  <circle cx="8" cy="3.2" r="1.6" fill="currentColor"></circle>
+                </svg>
+                Assigned to Seat 3
+              </span>
+              <span class="always">Seat 1 always included</span>
+            </div>
+          </div>
+          </div>
+          <figcaption>Product preview, coming in beta. Round-robin team booking with host rotation, a slot picker, and an assigned-to chip.</figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <section id="compare" aria-labelledby="compare-title">
+      <div class="wrap">
+        <p class="kicker">Compare</p>
+        <h2 id="compare-title">What Cal.diy removed<br>vs what SeatRota adds</h2>
+        <p class="section-intro">Removed in the April 2026 Cal.diy split. SeatRota adds them back.</p>
+        <div class="table-scroll">
+          <table class="compare">
+            <caption class="sr-only">What Cal.diy removed in the April 2026 split, and what SeatRota adds. Each addition is coming in beta.</caption>
+            <thead>
+              <tr>
+                <th scope="col">Removed in the April 2026 Cal.diy split</th>
+                <th scope="col">SeatRota adds</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><span class="mini">Removed</span>Team pages</td>
+                <td>
+                  <span class="mini">SeatRota adds</span>
+                  <span class="cell-add">Team booking pages <span class="badge">Coming in beta</span></span>
+                </td>
+              </tr>
+              <tr>
+                <td><span class="mini">Removed</span>Round-robin / collective</td>
+                <td>
+                  <span class="mini">SeatRota adds</span>
+                  <span class="cell-add">Round-robin and collective <span class="badge">Coming in beta</span></span>
+                </td>
+              </tr>
+              <tr>
+                <td><span class="mini">Removed</span>Workflows / reminders</td>
+                <td>
+                  <span class="mini">SeatRota adds</span>
+                  <span class="cell-add">Reminder workflows <span class="badge">Coming in beta</span></span>
+                </td>
+              </tr>
+              <tr>
+                <td><span class="mini">Removed</span>Insights</td>
+                <td>
+                  <span class="mini">SeatRota adds</span>
+                  <span class="cell-add">Insights <span class="badge">Coming in beta</span></span>
+                </td>
+              </tr>
+              <tr>
+                <td><span class="mini">Removed</span>SSO</td>
+                <td>
+                  <span class="mini">SeatRota adds</span>
+                  <span class="cell-add">OIDC SSO <span class="badge">Coming in beta</span></span>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <section id="features" aria-labelledby="features-title">
+      <div class="wrap">
+        <p class="kicker">Features</p>
+        <h2 id="features-title">What the beta includes</h2>
+        <div class="feature-list">
+          <article class="feature">
+            <div class="icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24">
+                <circle cx="8" cy="9" r="2.1" fill="none" stroke="currentColor" stroke-width="1.6"></circle>
+                <circle cx="16" cy="9" r="2.1" fill="none" stroke="currentColor" stroke-width="1.6"></circle>
+                <circle cx="12" cy="14.2" r="2.1" fill="none" stroke="currentColor" stroke-width="1.6"></circle>
+                <path d="M5.2 18.6c.5-1.7 1.8-2.6 2.8-2.6s2.3.9 2.8 2.6M13.2 18.6c.5-1.7 1.8-2.6 2.8-2.6s2.3.9 2.8 2.6" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"></path>
+              </svg>
+            </div>
+            <div>
+              <div class="feature-head">
+                <h3>Team booking pages</h3>
+                <span class="badge">Coming in beta</span>
+              </div>
+              <p>Create a team, invite members, and share a team booking link. Guests pick a time that works for the people who need to be there.</p>
+            </div>
+          </article>
+          <article class="feature">
+            <div class="icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24">
+                <path d="M19.5 12a7.5 7.5 0 1 1-2.1-5.2" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"></path>
+                <path d="M19.6 4.2v4.1h-4.1" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"></path>
+                <circle cx="12" cy="12" r="1.5" fill="currentColor"></circle>
+              </svg>
+            </div>
+            <div>
+              <div class="feature-head">
+                <h3>Round-robin and collective</h3>
+                <span class="badge">Coming in beta</span>
+              </div>
+              <p>Round-robin: a meeting is assigned to one host, with optional fixed hosts always included. Collective: every required host has to be free, and all of them are added to the booking.</p>
+            </div>
+          </article>
+          <article class="feature">
+            <div class="icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24">
+                <path d="M6.2 9.2a5.8 5.8 0 1 1 11.6 0c0 6.2 1.8 6.2 1.8 6.2H4.4s1.8 0 1.8-6.2Z" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"></path>
+                <path d="M10 18.2a2 2 0 0 0 4 0" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"></path>
+                <path d="M18.2 5.2l1.2-1.2M19.6 8.2H21" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"></path>
+              </svg>
+            </div>
+            <div>
+              <div class="feature-head">
+                <h3>Reminders, insights, and SSO</h3>
+                <span class="badge">Coming in beta</span>
+              </div>
+              <p>Email reminders before and after a meeting, a simple team dashboard (bookings, cancellations, no-shows, and how round-robin is splitting), and optional OIDC SSO. SSO is included in self-host. On the hosted product it sits on the Business plan. SMS reminders will be available as a usage-based add-on once a provider is chosen; there is no public SMS price yet.</p>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="pricing" aria-labelledby="pricing-title">
+      <div class="wrap">
+        <p class="kicker">Pricing</p>
+        <h2 id="pricing-title">Self-host is free and includes the full add-on, SSO included.</h2>
+        <p class="section-intro">Hosted prices are per active member, per month.</p>
+        <div class="plans">
+          <article class="plan free">
+            <header class="plan-head">
+              <h3>Self-host</h3>
+              <span class="badge">Coming in beta</span>
+            </header>
+            <p class="price"><span class="amount">Free</span></p>
+            <p class="includes">Teams, round-robin, collective, reminder workflows, insights, OIDC SSO. Community support.</p>
+            <a class="plan-link" href="#waitlist">Join the waitlist</a>
+          </article>
+          <article class="plan">
+            <header class="plan-head">
+              <h3>Hosted Team</h3>
+              <span class="badge">Coming in beta</span>
+            </header>
+            <p class="price"><span class="amount">$8/month</span><span class="cadence"> billed yearly, or $10 billed monthly</span></p>
+            <p class="includes">Hosted Cal.diy plus the Teams add-on, round-robin and collective, email reminders, insights, branding removal. SMS billed separately as usage, once a provider is set.</p>
+            <a class="plan-link" href="#waitlist">Join the waitlist</a>
+          </article>
+          <article class="plan">
+            <header class="plan-head">
+              <h3>Hosted Business</h3>
+              <span class="badge">Coming in beta</span>
+            </header>
+            <p class="price"><span class="amount">$15/month</span><span class="cadence"> billed yearly, or $19 billed monthly</span></p>
+            <p class="includes">Everything in Team, plus OIDC SSO, enforce-SSO, group-to-role mapping, domain auto-join, audit log, priority email support, 99.9% uptime target.</p>
+            <a class="plan-link" href="#waitlist">Join the waitlist</a>
+          </article>
+          <article class="plan">
+            <header class="plan-head">
+              <h3>Enterprise</h3>
+              <span class="badge">Coming in beta</span>
+            </header>
+            <p class="price"><span class="amount">Custom</span></p>
+            <p class="includes">Dedicated database or region, SAML later, SLA.</p>
+            <a class="plan-link" href="#waitlist">Join the waitlist</a>
+          </article>
+        </div>
+        <p class="price-note">Prices are what we intend to charge at hosted launch. They are not a live checkout yet. Trial length and any minimum seat count will be stated here only after they are confirmed.</p>
+      </div>
+    </section>
+
+    <section id="faq" aria-labelledby="faq-title">
+      <div class="wrap narrow">
+        <p class="kicker">FAQ</p>
+        <h2 id="faq-title">Licence, hosting, and timing</h2>
+        <div class="faq">
+          <details>
+            <summary>
+              <span>What licence applies?</span>
+              <svg class="plus" viewBox="0 0 16 16" aria-hidden="true"><path d="M8 2.5v11M2.5 8h11" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"></path></svg>
+            </summary>
+            <p>This website is MIT. Our add-on packages are licensed AGPL-3.0. The Cal.diy snapshot they build on stays MIT.</p>
+          </details>
+          <details>
+            <summary>
+              <span>Is self-host free, and is it complete?</span>
+              <svg class="plus" viewBox="0 0 16 16" aria-hidden="true"><path d="M8 2.5v11M2.5 8h11" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"></path></svg>
+            </summary>
+            <p>Self-host is free and includes the full add-on, SSO included. That covers teams, round-robin, collective, reminder workflows, insights, and OIDC SSO, with community support. The image and docs are not out yet.</p>
+          </details>
+          <details>
+            <summary>
+              <span>Who owns the data?</span>
+              <svg class="plus" viewBox="0 0 16 16" aria-hidden="true"><path d="M8 2.5v11M2.5 8h11" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"></path></svg>
+            </summary>
+            <p>Self-host means your database. On the hosted product, the data is yours and exportable.</p>
+          </details>
+          <details>
+            <summary>
+              <span>Is this affiliated with Cal.com?</span>
+              <svg class="plus" viewBox="0 0 16 16" aria-hidden="true"><path d="M8 2.5v11M2.5 8h11" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"></path></svg>
+            </summary>
+            <p>No. SeatRota is an independent project that works with Cal.diy.</p>
+          </details>
+          <details>
+            <summary>
+              <span>When will the beta be ready?</span>
+              <svg class="plus" viewBox="0 0 16 16" aria-hidden="true"><path d="M8 2.5v11M2.5 8h11" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"></path></svg>
+            </summary>
+            <p>No dates are promised. The self-host image and docs come first. The hosted beta follows, when sign-up opens. Join the waitlist and we will mail you when each one is ready.</p>
+          </details>
+        </div>
+      </div>
+    </section>
+
+    <section id="waitlist" aria-labelledby="waitlist-title">
+      <div class="wrap waitlist-grid">
+        <div class="waitlist-copy">
+          <p class="kicker">Waitlist</p>
+          <h2 id="waitlist-title">Get a note when it's ready</h2>
+          <p class="section-intro">Tell us what you want: self-host, when the image and docs are out, and/or the hosted beta, when sign-up opens.</p>
+          <ul class="benefits">
+            <li>
+              <svg viewBox="0 0 20 20" aria-hidden="true"><path d="M4.5 10.2 8.1 13.7 15.5 6.3" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+              <span>Self-host, when the image and docs are out</span>
+            </li>
+            <li>
+              <svg viewBox="0 0 20 20" aria-hidden="true"><path d="M4.5 10.2 8.1 13.7 15.5 6.3" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+              <span>The hosted beta, when sign-up opens</span>
+            </li>
+            <li>
+              <svg viewBox="0 0 20 20" aria-hidden="true"><path d="M4.5 10.2 8.1 13.7 15.5 6.3" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+              <span>Mail about SeatRota availability only. No newsletter.</span>
+            </li>
+          </ul>
+        </div>
+        <div class="form-card">
+          <iframe data-tally-src="https://tally.so/embed/VpP0Py?alignLeft=1&hideTitle=1&transparentBackground=1&dynamicHeight=1" loading="lazy" width="100%" height="829" frameborder="0" marginheight="0" marginwidth="0" title="SeatRota waitlist"></iframe>
+          <script src="https://tally.so/widgets/embed.js" async onload="Tally.loadEmbeds()"></script>
+          <p class="fallback"><a href="https://tally.so/r/VpP0Py">Form not loading? Open the waitlist</a></p>
+          <p class="fine">We'll only use this to mail you about SeatRota availability. The form is a free Tally form; Tally's own branding may appear on the free plan.</p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="wrap footer-inner">
+      <a class="logo" href="#top" aria-label="SeatRota">
+        <svg class="mark" viewBox="0 0 32 32" aria-hidden="true">
+          <circle cx="16" cy="16" r="11.2" fill="none" stroke="currentColor" stroke-width="1.5" opacity="0.45"></circle>
+          <circle cx="27.1" cy="16" r="2.15" fill="none" stroke="currentColor" stroke-width="1.5"></circle>
+          <circle cx="16" cy="27.1" r="2.15" fill="none" stroke="currentColor" stroke-width="1.5"></circle>
+          <circle cx="4.9" cy="16" r="2.15" fill="none" stroke="currentColor" stroke-width="1.5"></circle>
+          <circle cx="16" cy="4.9" r="2.7" fill="var(--accent)"></circle>
+        </svg>
+        <svg class="word" viewBox="-1 -3 96 32" aria-hidden="true">
+          <text x="0" y="20" fill="currentColor">SeatRota</text>
+        </svg>
+      </a>
+      <p>SeatRota. Works with Cal.diy. Source: <a href="https://github.com/seatrota">https://github.com/seatrota</a>. Our add-on packages are licensed AGPL-3.0; the Cal.diy snapshot they build on stays MIT.</p>
+    </div>
+  </footer>
+  <script src="theme.js"></script>
+</body>
+</html>
