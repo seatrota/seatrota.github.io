@@ -27,8 +27,8 @@ jobs:
       - name: Prepare site
         run: |
           mkdir -p _site/fonts
-          cp index.html styles.css theme.js favicon.svg og.png og.svg .nojekyll _site/
-          cp fonts/geist-latin-wght-normal.woff2 fonts/LICENSE.txt _site/fonts/
+          cp index.html styles.css main.js favicon.svg og.png .nojekyll _site/
+          cp fonts/schibsted-grotesk-var.woff2 fonts/martian-mono-var.woff2 fonts/OFL-SchibstedGrotesk.txt fonts/OFL-MartianMono.txt _site/fonts/
 
       - name: Configure Pages
         uses: actions/configure-pages@v5

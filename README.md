@@ -12,7 +12,7 @@ From the repository root:
 python3 -m http.server 8765
 ```
 
-Then open the site on localhost. `index.html` is the whole page. Styles, the theme script, the font, and the social image are local files.
+Then open the site on localhost. `index.html` is the whole page. Styles, the page script, the fonts, and the social image are local files.
 
 ## Publish
 
@@ -22,6 +22,6 @@ GitHub Pages deploys the site with [`.github/workflows/pages.yml`](.github/workf
 
 The website code is [MIT](LICENSE).
 
-[Geist](https://github.com/vercel/geist-font) is included under the SIL Open Font License, in [`fonts/LICENSE.txt`](fonts/LICENSE.txt).
+Schibsted Grotesk and Martian Mono are included under the SIL Open Font License, in [`fonts/OFL-SchibstedGrotesk.txt`](fonts/OFL-SchibstedGrotesk.txt) and [`fonts/OFL-MartianMono.txt`](fonts/OFL-MartianMono.txt).
 
 SeatRota add-on packages are licensed AGPL-3.0. The Cal.diy snapshot they build on stays MIT. Those packages are not in this repository.
